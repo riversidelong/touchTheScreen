@@ -7,8 +7,10 @@
 //
 
 #import "AppDelegate.h"
-
-@implementation AppDelegate
+#import "MainViewControllerFactory.h"
+@implementation AppDelegate {
+    UIViewController *viewCOntroller;
+}
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
@@ -19,6 +21,12 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    //FactoryMethodを用いてメイン画面を作りwindowに登録
+    viewCOntroller = [MainViewControllerFactory createMainViewController];
+    [self.window setRootViewController:viewCOntroller];
+    
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
